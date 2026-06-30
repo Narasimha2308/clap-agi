@@ -1,45 +1,156 @@
-# Double Clap Workspace Trigger
+# 👏 ClapAGI – Double Clap Desktop Automation
 
-A minimal Python script that listens for a double clap to automatically open applications, websites, and set up your workspace.
+ClapAGI is a real-time Python application that listens for a **double clap** using your computer's microphone and automatically performs desktop actions such as opening websites or launching applications.
 
-## Prerequisites
+It uses **PyAudio** for real-time audio input and **NumPy** for audio signal processing, making it a lightweight desktop automation tool.
 
-On macOS, you will likely need to install PortAudio before installing the Python packages:
-```bash
-brew install portaudio
-```
+---
+
+## Features
+
+* 👏 Real-time double clap detection
+* 🚀 Launch websites or desktop applications
+* 🌐 Cross-platform browser support
+* ⚡ Lightweight and fast
+* 🔧 Easily customizable for your own workflow
+
+---
+
+## Tech Stack
+
+* Python 3.x
+* PyAudio
+* NumPy
+* WebBrowser
+* Real-Time Audio Processing
+
+---
 
 ## Installation
 
-Install the required Python packages using pip:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/<YOUR_GITHUB_USERNAME>/clap-agi.git
+cd clap-agi
+```
+
+### 2. Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+---
 
-Start the listener from your terminal:
+## Run the Project
+
 ```bash
 python app.py
 ```
-Wait for the terminal to print `Listening for double claps...`. Once running, give two loud, distinct claps, and your configured tasks will execute! 
 
-*Note: After triggering the protocol, the listening gets paused to avoid audio feedback from music/videos. To completely stop the script, press `Ctrl+C` in your terminal.*
+When the program starts, you'll see:
 
-## How to Customize Tasks
+```text
+==================================================
+👏 Double Clap Detector Started
+Listening... Press Ctrl+C to stop.
+==================================================
+```
 
-To change what happens when you double clap, open `app.py` and scroll down to the `if clap_count == 2:` block. 
+Clap **twice** within one second to trigger the configured action.
 
-You can add or remove tasks inside this block. The easiest way to trigger things on Mac is using `os.system()`. Examples:
+---
+
+## Current Functionality
+
+After detecting a double clap, the application automatically:
+
+* Opens Cristiano Ronaldo's official YouTube channel.
+* Prevents repeated triggers using a cooldown timer.
+
+---
+
+## Customize Your Actions
+
+Open `app.py` and edit the action inside:
 
 ```python
-# 1. Open an application
-os.system("open -a 'Spotify'")
-
-# 2. Open a website in your browser
-os.system("open -a 'Google Chrome' 'https://github.com'")
-
-# 3. Open a specific project or file
-os.system("open -a 'Visual Studio Code' '/Path/To/Your/Project'")
+if clap_count == 2:
 ```
-Just place your desired commands in `app.py`, save, and run it again!
+
+### Open a Website
+
+```python
+import webbrowser
+
+webbrowser.open("https://www.youtube.com/@cristiano")
+```
+
+### Open VS Code
+
+```python
+import subprocess
+
+subprocess.Popen([
+    r"C:\Users\YOUR_USERNAME\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+])
+```
+
+### Open Notepad
+
+```python
+subprocess.Popen("notepad.exe")
+```
+
+### Open Calculator
+
+```python
+subprocess.Popen("calc.exe")
+```
+
+### Open a Folder
+
+```python
+import os
+
+os.startfile(r"D:\Projects")
+```
+
+You can combine multiple actions to create your own automated workspace.
+
+---
+
+## Project Structure
+
+```text
+clap-agi/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+## Future Improvements
+
+* Voice command support
+* AI assistant integration
+* Machine learning-based clap recognition
+* Custom hotkey automation
+* Multi-clap gesture detection
+* Desktop notification support
+
+---
+
+## License
+
+This project is released under the MIT License.
+
+---
+
+## Author
+
+Developed using Python for real-time audio-based desktop automation.
